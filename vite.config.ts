@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(),
         tailwindcss()
   ],
-  base: '/',  // 👈 must match your repo name
+  base: '/portfolio/',  // 👈 must match your repo name
 
 })

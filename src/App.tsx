@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Button } from "./components/ui/button";
+import { Moon, Sun } from "lucide-react";
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDark((prev) => !prev);
+    const newTheme = !isDark ? "dark" : "light";
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem("theme", newTheme);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen transition-colors duration-200 bg-white dark:bg-zinc-950">
+      {/* Theme Toggle */}
+      <div className="fixed top-8 right-8">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleTheme}
+          className="rounded-full"
+        >
+          {isDark ? (
+            <Sun className="h-5 w-5 text-zinc-400" />
+          ) : (
+            <Moon className="h-5 w-5 text-zinc-600" />
+          )}
+        </Button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+      {/* Page Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
+    </div>
+  );
+}

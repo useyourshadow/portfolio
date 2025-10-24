@@ -69,8 +69,15 @@ export default function Home() {
             asChild
             className="dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900"
           >
-            <Link to="https://www.ribit.tech/">recent project</Link>
+            <a 
+              href="https://www.ribit.tech/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              recent project
+            </a>
           </Button>
+
         </div>
 
         <div className="flex items-center justify-center gap-x-2 pt-2">

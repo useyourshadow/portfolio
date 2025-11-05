@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "portfolio",
+			"path": "../.."
+		},
+		{
+			"name": "src",
+			"path": "../../../../.vscode/personalwebsite/src"
+		}
+	],
+	"settings": {}
+}

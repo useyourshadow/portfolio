@@ -1,134 +1,113 @@
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
 import { Github, Linkedin } from "lucide-react";
-import { motion } from "framer-motion";
+import "./home.css";
 
 export default function Home() {
   const name = "oliver jen";
 
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  };
-
-  const letter = {
-    hidden: { opacity: 0, y: 10, color: "transparent" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      color: "rgb(var(--foreground-rgb))",
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
-  };
-
-  const fadeUpContainer = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const fadeUpItem = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
   return (
-    <div className="flex items-center justify-center min-h-screen px-4">
-      <div className="text-center space-y-4">
-        {/* Animated name */}
-        <motion.h1
-          className="text-zinc-900 dark:text-zinc-100 text-3xl font-semibold flex justify-center"
-          variants={container}
-          initial="hidden"
-          animate="visible"
-        >
-          {name.split("").map((char, index) => (
-            <motion.span key={index} variants={letter}>
+    <div className="home-root">
+      <div className="home-center">
+        {/* Name with character-by-character slam animation */}
+        <h1 className="home-name" aria-label={name}>
+          {name.split("").map((char, i) => (
+            <span
+              key={i}
+              className="home-letter"
+              style={{ animationDelay: `${i * 0.06}s` }}
+            >
               {char === " " ? "\u00A0" : char}
-            </motion.span>
+            </span>
           ))}
-        </motion.h1>
+        </h1>
 
-        {/* Fade-in items container */}
-        <motion.div
-          className="flex flex-col items-center space-y-4"
-          variants={fadeUpContainer}
-          initial="hidden"
-          animate="visible"
+        {/* Role line */}
+        <p
+          className="home-role"
+          style={{ animationDelay: `${name.length * 0.06 + 0.1}s` }}
         >
-          <motion.p className="text-zinc-600 dark:text-zinc-400 text-lg" variants={fadeUpItem}>
-            incoming Intern at{" "}
-            <span className="font-serif font-black">JPMorganChase</span>
-          </motion.p>
+          <span className="home-role-copy">SDE intern at</span>
+          <span className="home-amazon-brand" aria-label="Amazon">
+            <img
+              src={`${import.meta.env.BASE_URL}amazon-logo-light.svg`}
+              alt=""
+              aria-hidden="true"
+              className="home-amazon-logo home-amazon-logo-light"
+            />
+            <img
+              src={`${import.meta.env.BASE_URL}amazon-logo-dark.svg`}
+              alt=""
+              aria-hidden="true"
+              className="home-amazon-logo home-amazon-logo-dark"
+            />
+          </span>
+        </p>
 
-          <motion.div className="flex gap-4 justify-center flex-wrap items-center" variants={fadeUpItem}>
-            <Button
-              variant="outline"
-              asChild
-              className="dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900"
+        {/* Buttons */}
+        <div
+          className="home-buttons"
+          style={{ animationDelay: `${name.length * 0.06 + 0.28}s` }}
+        >
+          <Button
+            variant="outline"
+            asChild
+            className="home-btn dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900"
+          >
+            <a
+              href={`${import.meta.env.BASE_URL}resume.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <a
-                href={`${import.meta.env.BASE_URL}resume.pdf`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                resume
-              </a>
-            </Button>
+              resume
+            </a>
+          </Button>
 
-            <Button
-              variant="outline"
-              asChild
-              className="dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900"
+          <Button
+            variant="outline"
+            asChild
+            className="home-btn dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900"
+          >
+            <Link to="/projects">recent project</Link>
+          </Button>
+        </div>
+
+        {/* About link */}
+        <div
+          className="home-about-wrap"
+          style={{ animationDelay: `${name.length * 0.06 + 0.44}s` }}
+        >
+          <Link to="/about" className="home-about-link">
+            about
+          </Link>
+        </div>
+
+        {/* Social icons */}
+        <div
+          className="home-socials"
+          style={{ animationDelay: `${name.length * 0.06 + 0.58}s` }}
+        >
+          <Button asChild variant="ghost" size="icon">
+            <a
+              href="https://github.com/useyourshadow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
             >
-              <Link to="/projects">recent project</Link>
-            </Button>
-          </motion.div>
-
-          <motion.div className="mt-1 mb-1" variants={fadeUpItem}>
-            <Link
-              to="/about"
-              className="underline text-zinc-700 dark:text-zinc-300 hover:text-primary transition-colors text-base"
+              <Github className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
+            </a>
+          </Button>
+          <Button asChild variant="ghost" size="icon">
+            <a
+              href="https://linkedin.com/in/oliver-jen-ufl"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
             >
-              about
-            </Link>
-          </motion.div>
-
-          <motion.div className="flex items-center justify-center gap-x-2 pt-3" variants={fadeUpItem}>
-            <Button asChild variant="ghost" size="icon">
-              <a
-                href="https://github.com/useyourshadow"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
-              </a>
-            </Button>
-
-            <Button asChild variant="ghost" size="icon">
-              <a
-                href="https://linkedin.com/in/oliver-jen-ufl"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
-              </a>
-            </Button>
-          </motion.div>
-        </motion.div>
+              <Linkedin className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   );

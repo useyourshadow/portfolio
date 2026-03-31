@@ -1,0 +1,163 @@
+/* Home Page */
+
+.home-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.home-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+/* Name: letter slam */
+.home-name {
+  display: flex;
+  justify-content: center;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.home-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-28px) scaleY(1.4);
+  animation: letterSlam 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: bottom center;
+}
+
+@keyframes letterSlam {
+  0% { opacity: 0; transform: translateY(-28px) scaleY(1.4); }
+  60% { opacity: 1; transform: translateY(4px) scaleY(0.93); }
+  80% { transform: translateY(-2px) scaleY(1.02); }
+  100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+/* Shared reveal */
+.home-role,
+.home-buttons,
+.home-about-wrap,
+.home-socials {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: revealUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Role line */
+.home-role {
+  font-size: 1.1rem;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  gap: 0.52rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-role-copy {
+  white-space: nowrap;
+}
+
+.home-amazon-brand {
+  display: inline-flex;
+  align-items: flex-start;
+  line-height: 1;
+  transform: translateY(0.26em);
+}
+
+.home-amazon-logo {
+  display: block;
+  width: 4.9rem;
+  height: auto;
+}
+
+.home-amazon-logo-dark {
+  display: none;
+}
+
+.dark .home-amazon-logo-light {
+  display: none;
+}
+
+.dark .home-amazon-logo-dark {
+  display: block;
+}
+
+/* Buttons */
+.home-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.home-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* About link */
+.home-about-wrap {
+  margin: -0.1rem 0;
+}
+
+.home-about-link {
+  font-size: 0.95rem;
+  color: rgb(63 63 70);
+  text-underline-offset: 3px;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.home-about-link:hover {
+  color: rgb(0 0 0);
+}
+
+.dark .home-about-link {
+  color: rgb(212 212 216);
+}
+
+.dark .home-about-link:hover {
+  color: rgb(255 255 255);
+}
+
+/* Socials */
+.home-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .home-role {
+    gap: 0.34rem;
+  }
+
+  .home-amazon-brand {
+    transform: translateY(0.2em);
+  }
+
+  .home-amazon-logo {
+    width: 4.55rem;
+  }
+}

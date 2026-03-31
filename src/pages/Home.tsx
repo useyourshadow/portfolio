@@ -55,9 +55,8 @@ export default function Home() {
             className="home-btn dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900"
           >
             <a
-              href="/oliver-jen-resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/resume.pdf"
+              download="Oliver_Jen_Resume.pdf"
             >
               resume
             </a>

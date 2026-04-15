@@ -36,7 +36,7 @@ export default function Projects() {
         <h1 className="text-4xl font-semibold mb-8 dark:text-zinc-100">recent work</h1>
 
         <a
-          href="https://www.ribit.tech/"
+          href="https://apps.apple.com/us/app/ribit-share-rides/id6752734297"
           target="_blank"
           rel="noopener noreferrer"
           className="group block rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 hover:shadow-xl transition-all bg-white dark:bg-zinc-900"

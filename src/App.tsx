@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Button } from "./components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import About from "./pages/About"; 
 
+import Surprise from "./pages/Surprise";
+
 export default function App() {
+  const { pathname } = useLocation();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -24,6 +27,8 @@ export default function App() {
     document.documentElement.classList.toggle("dark", newTheme === "dark");
     localStorage.setItem("theme", newTheme);
   };
+
+  if (pathname.replace(/\/$/, "").toLowerCase() === "/suprise") return <Surprise />;
 
   return (
     <div className="min-h-screen transition-colors duration-200 bg-white dark:bg-zinc-950">
